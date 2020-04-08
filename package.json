@@ -5,6 +5,7 @@
   "main": "lib/main.js",
   "scripts": {
     "build": "babel src --out-dir lib",
+    "prepublish": "npm run build",
     "test": "npm run build"
   },
   "keywords": [
@@ -27,5 +28,6 @@
     ">0.2%",
     "not dead",
     "not op_mini all"
-  ]
+  ],
+  "files": ["lib/main.js"]
 }
