@@ -4,6 +4,8 @@
   "description": "An animated scrolling favicon for your website",
   "main": "src/main.js",
   "scripts": {
+    "build": "babel src --out-dir lib",
+    "test": "npm run build"
   },
   "keywords": [
     "favicon",
@@ -13,5 +15,17 @@
   ],
   "author": "Sten Laane <sten@laane.xyz> (https://laane.xyz)",
   "license": "MIT",
-  "repository": "https://github.com/StenAL/favicon-marquee"
+  "repository": "https://github.com/StenAL/favicon-marquee",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "core-js": "^3.6.4"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
