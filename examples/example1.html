@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrolling favicon</title>
+</head>
+<body>
+    <h1>Scrolling favicon</h1>
+    <p>Check it out in the tab above</p>
+    <script type="module">
+        import FaviconMarquee from "../lib/main.js";
+        const marquee = new FaviconMarquee({
+            text: 'Wow いいね хорошо 🌐😊',
+            font: '"Comic Sans MS", sans-serif',
+            paddingBottom: 3,
+        });
+        marquee.start(1000/24);
+    </script>
+</body>
+</html>
