@@ -2,7 +2,7 @@
   "name": "favicon-marquee",
   "version": "1.0.0",
   "description": "An animated scrolling favicon for your website",
-  "main": "src/main.js",
+  "main": "lib/main.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "test": "npm run build"
