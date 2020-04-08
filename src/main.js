@@ -5,7 +5,7 @@ class FaviconMarquee {
         this.color = params.color ?? "green";
         this.step = params.step ?? 0.5;
         this.font = params.font ?? "Arial, sans-serif";
-        this.marginBottom = params.paddingBottom ?? 0;
+        this.marginBottom = params.marginBottom ?? 0;
         this.background = params.background;
         this.pixelsScrolled = 0;
     }
