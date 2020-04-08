@@ -1,0 +1,17 @@
+{
+  "name": "favicon-marquee",
+  "version": "1.0.0",
+  "description": "An animated scrolling favicon for your website",
+  "main": "src/main.js",
+  "scripts": {
+  },
+  "keywords": [
+    "favicon",
+    "marquee",
+    "animated",
+    "front-end"
+  ],
+  "author": "Sten Laane <sten@laane.xyz> (https://laane.xyz)",
+  "license": "MIT",
+  "repository": "https://github.com/StenAL/favicon-marquee"
+}
