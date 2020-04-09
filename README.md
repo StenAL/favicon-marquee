@@ -1,10 +1,15 @@
 # favicon-marquee
-> A simple JavaScript class with no dependencies that adds an animated scrolling
+![Scrolling text example 1](https://media.giphy.com/media/mGWVZO8Ae1p6JZme2M/giphy.gif)
+  
+![Scrolling text example 2](https://media.giphy.com/media/kdFxjQIkYcGunIr22t/giphy.gif)
+
+> A <5 kB JavaScript class with no dependencies that adds an animated scrolling
 > favicon to your website.
 > See the [demo](https://laane.xyz/favicon/example1.html).
 
 This package is transpiled and polyfilled to be pre-ES6 compatible which means it 
 works on all modern browsers
+
 ## Install
 
 You can either [download](https://github.com/StenAL/favicon-marquee/archive/master.zip)
@@ -16,14 +21,16 @@ $ yarn add canvas-marquee
 ```
 
 ## Usage
-favicon-marquee can be bundled with all major build tools or imported from
- a file
+favicon-marquee can be bundled with all major build tools                           
 
 ```
 import FaviconMarquee from "favicon-marquee";
-// or
-import FaviconMarquee from "path/to/lib/main.js";
 ```
+or loaded using a script tag and used as a global variable
+```
+<script type="text/javascript" src="path/to/lib/main.js">
+```
+
 
 Now that FaviconMarquee is accessible, you can use it by running the following code
 ```
@@ -58,7 +65,7 @@ marquee is re-rendered.
 
 ```
 const marquee = new FaviconMarquee({
-    text: 'Different text 🚀',
+    text: 'Different text',
     color: '#323330',
     size: 48,
     step: 0.5,
