@@ -17,7 +17,7 @@ the whole project or install it via npm or yarn:
 
 ```
 $ npm install favicon-marquee
-$ yarn add canvas-marquee
+$ yarn add favicon-marquee
 ```
 
 ## Usage
@@ -75,7 +75,7 @@ const marquee = new FaviconMarquee({
 marquee.start(1000/30); // renders at 30 fps
 ```
 ## Contributing and Issues
-Contributions are always welcome. Everyone is welcome to open issues and
+Contributions are always welcome. Anyone can open issues and
  pull requests on [GitHub](https://github.com/StenAL/favicon-marquee) 
 
 ## License
