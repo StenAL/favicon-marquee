@@ -4,9 +4,9 @@
   "description": "An animated scrolling favicon for your website",
   "main": "lib/main.js",
   "scripts": {
-    "build": "babel src --out-dir lib",
+    "build": "webpack --mode production",
     "prepublish": "npm run build",
-    "test": "npm run build"
+    "webpack": "webpack --mode development"
   },
   "keywords": [
     "favicon",
@@ -21,13 +21,17 @@
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "core-js": "^3.6.4"
+    "babel-loader": "^8.1.0",
+    "core-js": "^3.6.4",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not op_mini all"
   ],
-  "files": ["lib/main.js"]
+  "files": [
+    "lib/main.js"
+  ]
 }
