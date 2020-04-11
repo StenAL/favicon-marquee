@@ -1,9 +1,9 @@
 # favicon-marquee
-![Scrolling text example 1](https://media.giphy.com/media/mGWVZO8Ae1p6JZme2M/giphy.gif)
+![Scrolling text example 1](https://i.imgur.com/o3f9cWL.gif)
   
-![Scrolling text example 2](https://media.giphy.com/media/kdFxjQIkYcGunIr22t/giphy.gif)
+![Scrolling text example 2](https://i.imgur.com/OFJRjuK.gif)
 
-> A <5 kB JavaScript class with no dependencies that adds an animated scrolling
+> A <10 kB JavaScript class with no dependencies that adds an animated scrolling
 > favicon to your website.
 > See the [demo](https://laane.xyz/favicon/example1.html).
 
@@ -29,6 +29,8 @@ import FaviconMarquee from "favicon-marquee";
 or loaded using a script tag and used as a global variable
 ```
 <script type="text/javascript" src="path/to/lib/main.js">
+// a CDN can also be used
+<script src="https://cdn.jsdelivr.net/npm/favicon-marquee@1.1.2/lib/main.js"></script>
 ```
 
 
