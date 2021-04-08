@@ -15,14 +15,10 @@ class FaviconMarquee {
         this.favicon.type = "image/jpeg";
         this.favicon.rel = "shortcut icon";
         document.head.appendChild(this.favicon);
+        this.createCanvas();
         setInterval(() => this.draw(), interval);
     }
 
-    /**
-     * A new canvas is created on every render since (on Chrome) reusing the old canvas
-     * comes with massive CPU usage creep which results in 100% CPU usage and
-     * the website being unusable after ~15 minutes of running
-     */
     createCanvas() {
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.size;
@@ -35,7 +31,6 @@ class FaviconMarquee {
     }
 
     draw() {
-        this.createCanvas();
         if (this.background) {
             this.ctx.fillStyle = this.background;
             this.ctx.rect(0, 0, this.size, this.size);
@@ -51,7 +46,8 @@ class FaviconMarquee {
         }
 
         const canvasWidthOffset = -1 * this.pixelsScrolled + this.size; // negation of pixelsScrolled because canvas scrolls left-to-right
-        // add this.size to begin rendering with blank canvas
+                                                                        // add this.size to begin rendering with blank canvas
+
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(
             this.text,
