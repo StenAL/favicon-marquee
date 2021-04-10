@@ -16,9 +16,18 @@ class FaviconMarquee {
         this.favicon.rel = "shortcut icon";
         document.head.appendChild(this.favicon);
         this.createCanvas();
-        setInterval(() => this.draw(), interval);
+        this.interval = setInterval(() => this.draw(), interval);
     }
 
+    stop() {
+        clearInterval(this.interval);
+    }
+
+    /**
+     * A new canvas is created on every render since on FireFox reusing the old canvas
+     * comes with massive CPU usage creep which results in 100% CPU usage and
+     * the website being unusable after ~15 minutes of running
+     */
     createCanvas() {
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.size;
