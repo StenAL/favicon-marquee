@@ -81,7 +81,7 @@ const marquee = new FaviconMarquee({
 });
 marquee.start(1000/30); // renders at 30 fps
 ```
-
+`marquee.stop()` can be used to stop the marquee at any time, after which it can be restarted again with `marquee.start()`.
 ## Contributing and Issues
 
 Contributions are always welcome. Anyone can open issues and

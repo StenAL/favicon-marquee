@@ -8,6 +8,8 @@ class FaviconMarquee {
         this.marginBottom = params.marginBottom ?? 0;
         this.background = params.background;
         this.pixelsScrolled = 0;
+        this.redraws = 0; // counts how many times the same canvas has been used for drawing the favicon
+                          // needed because Firefox slows down horribly when reusing the same canvas too many times
     }
 
     start(interval = 1000 / 24) {
@@ -40,6 +42,13 @@ class FaviconMarquee {
     }
 
     draw() {
+        if (this.redraws === 500) { // make a new canvas every 500 redraws
+            // this number is high enough to avoid frequent garbage collection
+            // but low enough to avoid Firefox performance problems
+            this.createCanvas();
+            this.redraws = 0;
+        }
+
         if (this.background) {
             this.ctx.fillStyle = this.background;
             this.ctx.rect(0, 0, this.size, this.size);
@@ -65,6 +74,7 @@ class FaviconMarquee {
         );
 
         this.favicon.href = this.canvas.toDataURL("image/png", 0.3);
+        this.redraws++;
     }
 }
 
