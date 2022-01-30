@@ -8,8 +8,8 @@
         <h1>Scrolling favicon example 2</h1>
         <p>Check it out in the tab above</p>
         <p>Other examples: <a href="./example1.html">1</a></p>
-        <script src="../lib/main.js"></script>
-        <script>
+        <script type="module">
+            import FaviconMarquee from "../lib/main.js";
             const marquee = new FaviconMarquee({
                 text: "Different text",
                 color: "#323330",
