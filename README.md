@@ -30,7 +30,7 @@ or loaded from a CDN and used in a HTML module script
 
 ```html
 <script type="module">
-    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee@1.2.1/lib/main.js";
+    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee@1.2.2/lib/main.js";
     // ...
 </script>
 ```
