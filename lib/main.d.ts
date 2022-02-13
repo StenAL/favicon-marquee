@@ -42,6 +42,14 @@ export interface FaviconMarqueeParameters {
      */
     background?: string;
 }
+/**
+ * A scrolling favicon for your website.
+ * How to use:
+ * 1. Initialize using the constructor
+ *     const faviconMarquee = new FaviconMarquee();
+ * 2. Call its start method
+ *     faviconMarquee.start();
+ */
 export declare class FaviconMarquee {
     private readonly size;
     private readonly text;
@@ -51,14 +59,20 @@ export declare class FaviconMarquee {
     private readonly marginBottom;
     private readonly background?;
     private pixelsScrolled;
-    private redraws;
     private interval?;
     private favicon?;
     private canvas?;
     private ctx?;
     private textWidth?;
     constructor({ text, font, color, step, size, marginBottom, background, }: FaviconMarqueeParameters);
+    /**
+     * Start the marquee at 24 FPS. The refresh interval can be configured using the interval parameter.
+     * Higher FPS may result in performance issues on low-powered devices.
+     */
     start(interval?: number): void;
+    /**
+     * Stop the marquee. It can be restarted again using {@link start}
+     */
     stop(): void;
     private draw;
     private createCanvas;
