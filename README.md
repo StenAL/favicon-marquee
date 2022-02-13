@@ -1,8 +1,8 @@
 # favicon-marquee
 
-![Scrolling text example 1](https://i.imgur.com/o3f9cWL.gif)
+![Scrolling text example 1](./examples/scrolling-example-1.gif)
 
-![Scrolling text example 2](https://i.imgur.com/OFJRjuK.gif)
+![Scrolling text example 2](./examples/scrolling-example-2.gif)
 
 > A <5 kB JavaScript class with no dependencies that adds an animated scrolling
 > favicon to your website.
@@ -30,7 +30,7 @@ or loaded from a CDN and used in a HTML module script
 
 ```html
 <script type="module">
-    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee@1.2.0/lib/main.js";
+    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee@1.2.1/lib/main.js";
     // ...
 </script>
 ```
@@ -80,7 +80,9 @@ const marquee = new FaviconMarquee({
 });
 marquee.start(1000/30); // renders at 30 fps
 ```
+
 `marquee.stop()` can be used to stop the marquee at any time, after which it can be restarted again with `marquee.start()`.
+
 ## Contributing and Issues
 
 Contributions are always welcome. Anyone can open issues and
