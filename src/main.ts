@@ -61,7 +61,6 @@ export class FaviconMarquee {
     private readonly background?: string;
 
     private pixelsScrolled: number;
-    private redraws: number;
     private interval?: number;
     private favicon?: HTMLLinkElement;
     private canvas?: HTMLCanvasElement;
@@ -85,8 +84,6 @@ export class FaviconMarquee {
         this.marginBottom = marginBottom;
         this.background = background;
         this.pixelsScrolled = 0;
-        this.redraws = 0; // counts how many times the same canvas has been used for drawing the favicon
-        // needed because Firefox slows down horribly when reusing the same canvas too many times
     }
 
     /**
@@ -111,13 +108,6 @@ export class FaviconMarquee {
     }
 
     private draw(): void {
-        if (this.redraws === 500) {
-            // make a new canvas every 500 redraws
-            // this number is high enough to avoid frequent garbage collection
-            // but low enough to avoid Firefox performance problems
-            this.createCanvas();
-            this.redraws = 0;
-        }
         if (
             this.ctx === undefined ||
             this.textWidth === undefined ||
@@ -148,11 +138,6 @@ export class FaviconMarquee {
         this.favicon.href = this.canvas.toDataURL("image/png", 0.3);
     }
 
-    /**
-     * A new canvas is created every 500 renders since on FireFox reusing the old canvas
-     * comes with massive CPU usage creep which results in 100% CPU usage and
-     * the website being unusable after ~15 minutes of running
-     */
     private createCanvas(): void {
         this.canvas = document.createElement("canvas");
         this.canvas.width = this.size;
@@ -168,7 +153,6 @@ export class FaviconMarquee {
         this.ctx = renderingContext;
         this.ctx.font = this.size + "px " + this.font;
         this.textWidth = Math.ceil(this.ctx.measureText(this.text).width);
-        this.redraws++;
     }
 }
 
