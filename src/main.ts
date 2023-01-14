@@ -118,8 +118,7 @@ export class FaviconMarquee {
         }
         if (this.background) {
             this.ctx.fillStyle = this.background;
-            this.ctx.rect(0, 0, this.size, this.size);
-            this.ctx.fill();
+            this.ctx.fillRect(0, 0, this.size, this.size);
         } else {
             this.ctx.clearRect(0, 0, this.size, this.size);
         }
