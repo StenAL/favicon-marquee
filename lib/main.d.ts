@@ -59,7 +59,7 @@ export declare class FaviconMarquee {
     private readonly marginBottom;
     private readonly background?;
     private pixelsScrolled;
-    private interval?;
+    private state;
     private favicon?;
     private canvas?;
     private ctx?;
@@ -69,7 +69,7 @@ export declare class FaviconMarquee {
      * Start the marquee at 24 FPS. The refresh interval can be configured using the interval parameter.
      * Higher FPS may result in performance issues on low-powered devices.
      */
-    start(interval?: number): void;
+    start(): void;
     /**
      * Stop the marquee. It can be restarted again using {@link start}
      */
