@@ -63,8 +63,8 @@ export class FaviconMarquee {
     private pixelsScrolled: number;
     private interval?: number;
     private favicon?: HTMLLinkElement;
-    private canvas?: HTMLCanvasElement;
-    private ctx?: CanvasRenderingContext2D;
+    private canvas?: HTMLCanvasElement | OffscreenCanvas;
+    private ctx?: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
     private textWidth?: number;
 
     constructor({
@@ -107,7 +107,7 @@ export class FaviconMarquee {
         this.interval = undefined;
     }
 
-    private draw(): void {
+    private async draw(): Promise<void> {
         if (
             this.ctx === undefined ||
             this.textWidth === undefined ||
@@ -134,16 +134,39 @@ export class FaviconMarquee {
         this.ctx.fillStyle = this.color;
         this.ctx.fillText(this.text, canvasWidthOffset, this.size - this.marginBottom);
 
-        this.favicon.href = this.canvas.toDataURL("image/png", 0.3);
+        let dataUrl;
+        if (this.canvas instanceof OffscreenCanvas) {
+            const blob = await this.canvas.convertToBlob({ type: "image/png" });
+            const p = new Promise<string>((resolve) => {
+                const fileReader = new FileReader();
+                fileReader.addEventListener("loadend", () => {
+                    if (fileReader.readyState !== FileReader.DONE || typeof fileReader.result !== "string") {
+                        throw new Error("Error converting canvas to OffscreenCanvas");
+                    }
+                    resolve(fileReader.result);
+                })
+                fileReader.readAsDataURL(blob);
+            })
+            dataUrl = await p;
+        } else {
+            dataUrl = this.canvas.toDataURL("image/png");
+        }
+        this.favicon.href = dataUrl;
     }
 
     private createCanvas(): void {
-        this.canvas = document.createElement("canvas");
-        this.canvas.width = this.size;
-        this.canvas.height = this.size;
-        this.canvas.hidden = true;
+        let renderingContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
+        if (window.OffscreenCanvas) {
+            this.canvas = new OffscreenCanvas(this.size, this.size);
+            renderingContext = this.canvas.getContext("2d")
+        } else {
+            this.canvas = document.createElement("canvas");
+            this.canvas.width = this.size;
+            this.canvas.height = this.size;
+            this.canvas.hidden = true;
+            renderingContext = this.canvas.getContext("2d");
+        }
 
-        const renderingContext = this.canvas.getContext("2d");
         if (renderingContext === null) {
             throw new Error(
                 "Error getting 2D rendering context from canvas. This browser does not support FaviconMarquee"

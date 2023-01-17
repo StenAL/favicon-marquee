@@ -13,12 +13,14 @@
         "prepublish": "npm run build"
     },
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "@types/web": "^0.0.88"
+    },
     "devDependencies": {
         "husky": "^4.3.8",
-        "typescript": "^4.5.5",
         "lint-staged": "^12.3.2",
-        "prettier": "^2.5.1"
+        "prettier": "^2.5.1",
+        "typescript": "^4.9.4"
     },
     "husky": {
         "hooks": {
