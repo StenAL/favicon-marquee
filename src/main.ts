@@ -43,6 +43,11 @@ export interface FaviconMarqueeParameters {
     background?: string;
 }
 
+enum State {
+    Stopped,
+    Running
+}
+
 /**
  * A scrolling favicon for your website.
  * How to use:
@@ -61,7 +66,7 @@ export class FaviconMarquee {
     private readonly background?: string;
 
     private pixelsScrolled: number;
-    private interval?: number;
+    private state: State
     private favicon?: HTMLLinkElement;
     private canvas?: HTMLCanvasElement | OffscreenCanvas;
     private ctx?: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
@@ -71,8 +76,8 @@ export class FaviconMarquee {
         text = "SCROLLING TEXT",
         font = '"Arial", sans-serif',
         color = "green",
-        step = 0.5,
-        size = 32,
+        step = 1,
+        size = 512,
         marginBottom = 0,
         background,
     }: FaviconMarqueeParameters) {
@@ -84,27 +89,34 @@ export class FaviconMarquee {
         this.marginBottom = marginBottom;
         this.background = background;
         this.pixelsScrolled = 0;
+        this.state = State.Stopped;
     }
 
     /**
      * Start the marquee at 24 FPS. The refresh interval can be configured using the interval parameter.
      * Higher FPS may result in performance issues on low-powered devices.
      */
-    public start(interval: number = 1000 / 24): void {
+    public start(): void {
+        this.state = State.Running
         this.favicon = document.createElement("link");
         this.favicon.type = "image/jpeg";
         this.favicon.rel = "shortcut icon";
         document.head.appendChild(this.favicon);
         this.createCanvas();
-        this.interval = setInterval(() => this.draw(), interval);
+        const render = async () => {
+            if (this.state === State.Running) {
+                await this.draw()
+                requestAnimationFrame(render)
+            }
+        }
+        render().catch(e => console.log("Failed to render FaviconMarquee:", e));
     }
 
     /**
      * Stop the marquee. It can be restarted again using {@link start}
      */
     public stop(): void {
-        clearInterval(this.interval);
-        this.interval = undefined;
+        this.state = State.Stopped;
     }
 
     private async draw(): Promise<void> {
