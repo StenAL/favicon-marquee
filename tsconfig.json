@@ -2,17 +2,16 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         "lib": [
-            "ES2018",
+            "ES2021",
         ],
-        "module": "ES2020",
-        "target": "ES2018",
+        "module": "ES2022",
+        "target": "ES2022",
         "strict": true,
-        "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "outDir": "lib",
         "declaration": true
     },
-    "files": [
-        "src/main.ts"
+    "include": [
+        "src"
     ]
 }
