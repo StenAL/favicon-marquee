@@ -21,15 +21,9 @@ export interface FaviconMarqueeParameters {
     /**
      * Specifies how many pixels the marquee scrolls each render. This can be used
      * to speed up or slow down the text's scrolling.
-     * Default: 0.5
+     * Default: 0.75
      */
     step?: number;
-    /**
-     * Size of the canvas used to render the marquee's text. A larger size results in
-     * a more detailed picture but might cause performance issues.
-     * Default: 32
-     */
-    size?: number;
     /**
      * The text is rendered at the bottom of the favicon. This option
      * can be used to add some margin to the bottom to center the text instead.
@@ -57,7 +51,7 @@ enum State {
  *     faviconMarquee.start();
  */
 export class FaviconMarquee {
-    private readonly size: number;
+    private static readonly CANVAS_SIZE = 256;
     private readonly text: string;
     private readonly color: string;
     private readonly step: number;
@@ -76,13 +70,11 @@ export class FaviconMarquee {
         text = "SCROLLING TEXT",
         font = '"Arial", sans-serif',
         color = "green",
-        step = 1,
-        size = 512,
+        step = 0.75,
         marginBottom = 0,
         background,
     }: FaviconMarqueeParameters) {
         this.text = text;
-        this.size = size;
         this.color = color;
         this.step = step;
         this.font = font;
@@ -92,10 +84,6 @@ export class FaviconMarquee {
         this.state = State.Stopped;
     }
 
-    /**
-     * Start the marquee at 24 FPS. The refresh interval can be configured using the interval parameter.
-     * Higher FPS may result in performance issues on low-powered devices.
-     */
     public start(): void {
         this.state = State.Running
         this.favicon = document.createElement("link");
@@ -130,21 +118,21 @@ export class FaviconMarquee {
         }
         if (this.background) {
             this.ctx.fillStyle = this.background;
-            this.ctx.fillRect(0, 0, this.size, this.size);
+            this.ctx.fillRect(0, 0, FaviconMarquee.CANVAS_SIZE, FaviconMarquee.CANVAS_SIZE);
         } else {
-            this.ctx.clearRect(0, 0, this.size, this.size);
+            this.ctx.clearRect(0, 0, FaviconMarquee.CANVAS_SIZE, FaviconMarquee.CANVAS_SIZE);
         }
 
         this.pixelsScrolled += this.step;
-        if (this.pixelsScrolled > this.textWidth + 2 * this.size) {
-            // 2 * this.size to begin and end with blank canvas
+        if (this.pixelsScrolled > this.textWidth + 2 * FaviconMarquee.CANVAS_SIZE) {
+            // 2 * CANVAS_SIZE to begin and end with blank canvas
             this.pixelsScrolled = 0; // loop around
         }
 
-        const canvasWidthOffset = -1 * this.pixelsScrolled + this.size; // negation of pixelsScrolled because canvas scrolls left-to-right
-        // add this.size to begin rendering with blank canvas
+        const canvasWidthOffset = -1 * this.pixelsScrolled + FaviconMarquee.CANVAS_SIZE; // negation of pixelsScrolled because canvas scrolls left-to-right
+        // add CANVAS_SIZE to begin rendering with blank canvas
         this.ctx.fillStyle = this.color;
-        this.ctx.fillText(this.text, canvasWidthOffset, this.size - this.marginBottom);
+        this.ctx.fillText(this.text, canvasWidthOffset, FaviconMarquee.CANVAS_SIZE - this.marginBottom);
 
         let dataUrl;
         if (this.canvas instanceof OffscreenCanvas) {
@@ -169,12 +157,12 @@ export class FaviconMarquee {
     private createCanvas(): void {
         let renderingContext: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
         if (window.OffscreenCanvas) {
-            this.canvas = new OffscreenCanvas(this.size, this.size);
+            this.canvas = new OffscreenCanvas(FaviconMarquee.CANVAS_SIZE, FaviconMarquee.CANVAS_SIZE);
             renderingContext = this.canvas.getContext("2d")
         } else {
             this.canvas = document.createElement("canvas");
-            this.canvas.width = this.size;
-            this.canvas.height = this.size;
+            this.canvas.width = FaviconMarquee.CANVAS_SIZE;
+            this.canvas.height = FaviconMarquee.CANVAS_SIZE;
             this.canvas.hidden = true;
             renderingContext = this.canvas.getContext("2d");
         }
@@ -185,7 +173,7 @@ export class FaviconMarquee {
             );
         }
         this.ctx = renderingContext;
-        this.ctx.font = this.size + "px " + this.font;
+        this.ctx.font = FaviconMarquee.CANVAS_SIZE + "px " + this.font;
         this.textWidth = Math.ceil(this.ctx.measureText(this.text).width);
     }
 }

@@ -30,7 +30,7 @@ or loaded from a CDN and used in a HTML module script
 
 ```html
 <script type="module">
-    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee@1.2.2/lib/main.js";
+    import FaviconMarquee from "https://cdn.jsdelivr.net/npm/favicon-marquee/lib/main.js";
     // ...
 </script>
 ```
@@ -58,8 +58,6 @@ to its constructor, although sensible defaults are provided:
     any valid CSS `color` value
 -   `step` - specifies how many pixels the marquee scrolls each render. This can be used
     to speed up or slow down the text's scrolling
--   `size` - size of the canvas used to render the marquee's text. A larger size results in
-    a more detailed picture but might cause performance issues
 -   `marginBottom` - the text is rendered at the bottom of the favicon. This option
     can be used to add some margin to the bottom to center the text instead
 -   `background` - the background color of the text. Can be any valid CSS `color` value.
@@ -69,7 +67,7 @@ These properties must be wrapped in an object before passing them to the constru
 Additionally, a number can be passed into the `start` method to control how often (in ms) the
 marquee is re-rendered.
 
-```
+```js
 const marquee = new FaviconMarquee({
     text: 'Different text',
     color: '#323330',
@@ -78,7 +76,7 @@ const marquee = new FaviconMarquee({
     background: "#F0DB4F",
     marginBottom: 3,
 });
-marquee.start(1000/30); // renders at 30 fps
+marquee.start();
 ```
 
 `marquee.stop()` can be used to stop the marquee at any time, after which it can be restarted again with `marquee.start()`.
