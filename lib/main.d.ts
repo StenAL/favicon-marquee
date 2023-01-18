@@ -21,15 +21,9 @@ export interface FaviconMarqueeParameters {
     /**
      * Specifies how many pixels the marquee scrolls each render. This can be used
      * to speed up or slow down the text's scrolling.
-     * Default: 0.5
+     * Default: 0.75
      */
     step?: number;
-    /**
-     * Size of the canvas used to render the marquee's text. A larger size results in
-     * a more detailed picture but might cause performance issues.
-     * Default: 32
-     */
-    size?: number;
     /**
      * The text is rendered at the bottom of the favicon. This option
      * can be used to add some margin to the bottom to center the text instead.
@@ -51,7 +45,7 @@ export interface FaviconMarqueeParameters {
  *     faviconMarquee.start();
  */
 export declare class FaviconMarquee {
-    private readonly size;
+    private static readonly CANVAS_SIZE;
     private readonly text;
     private readonly color;
     private readonly step;
@@ -64,11 +58,7 @@ export declare class FaviconMarquee {
     private canvas?;
     private ctx?;
     private textWidth?;
-    constructor({ text, font, color, step, size, marginBottom, background, }: FaviconMarqueeParameters);
-    /**
-     * Start the marquee at 24 FPS. The refresh interval can be configured using the interval parameter.
-     * Higher FPS may result in performance issues on low-powered devices.
-     */
+    constructor({ text, font, color, step, marginBottom, background, }: FaviconMarqueeParameters);
     start(): void;
     /**
      * Stop the marquee. It can be restarted again using {@link start}
