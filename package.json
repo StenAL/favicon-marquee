@@ -9,8 +9,10 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc",
-        "prepublish": "npm run build"
+        "compile": "tsc",
+        "format": "prettier --check",
+        "format:fix": "prettier --write",
+        "prepublish": "npm run compile"
     },
     "license": "MIT",
     "dependencies": {
