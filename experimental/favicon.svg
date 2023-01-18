@@ -1,0 +1,8 @@
+<svg width="54" height="54" viewBox="0 0 54 54" fill="#F0DB4F" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="27" cy="27" r="25" stroke="#005C97" stroke-width="3"/>
+
+    <circle class="spinner" cx="35" cy="21" r="7" fill="#005C97">
+        <animateTransform id="an" attributeName="transform" type="rotate" begin="0s" dur="4s" values="0 27 27;360 27 27"
+                          repeatCount="indefinite"/>
+    </circle>
+</svg>
