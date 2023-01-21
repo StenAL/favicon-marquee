@@ -10,8 +10,8 @@
     ],
     "scripts": {
         "compile": "tsc",
-        "format": "prettier --check",
-        "format:fix": "prettier --write",
+        "format": "prettier --check src/**/*",
+        "format:fix": "prettier --write src/**/*",
         "prepublishOnly": "npm run compile"
     },
     "license": "MIT",
