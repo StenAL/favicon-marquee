@@ -12,7 +12,7 @@
         "compile": "tsc",
         "format": "prettier --check",
         "format:fix": "prettier --write",
-        "prepublish": "npm run compile"
+        "prepublishOnly": "npm run compile"
     },
     "license": "MIT",
     "dependencies": {
