@@ -85,6 +85,10 @@ export class FaviconMarquee {
     }
 
     public start(): void {
+        if (this.state === State.Running) {
+            return;
+        }
+
         if (!this.favicon) {
             let favicon = document.querySelector<HTMLLinkElement>("link[rel~='icon']")
             if (!favicon) {
@@ -95,6 +99,7 @@ export class FaviconMarquee {
             favicon.type = "image/jpeg";
             this.favicon = favicon;
         }
+
         this.state = State.Running
         this.createCanvas();
         const render = async () => {
