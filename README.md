@@ -13,7 +13,7 @@
 You can either [download](https://github.com/StenAL/favicon-marquee/archive/master.zip)
 the whole project or install it via npm or yarn:
 
-```
+```sh
 $ npm install favicon-marquee
 $ yarn add favicon-marquee
 ```
