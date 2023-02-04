@@ -1,4 +1,3 @@
-/// <reference types="web" />
 type Renderer = import("./types").Renderer;
 type DataMessage = import("./types").DataMessage;
 type FaviconMarqueeParameters = import("./types").FaviconMarqueeParameters;

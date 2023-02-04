@@ -1,4 +1,3 @@
-/// <reference types="web" />
 import { FaviconMarqueeParameters } from "./types.js";
 export declare const CANVAS_SIZE = 256;
 export declare class CanvasPainter {

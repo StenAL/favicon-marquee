@@ -1,4 +1,3 @@
-/// <reference types="web" />
 import { FaviconMarqueeParameters, Renderer } from "./types.js";
 export declare class CanvasRenderer implements Renderer {
     private readonly favicon;

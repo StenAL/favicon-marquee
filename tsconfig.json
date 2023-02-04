@@ -3,6 +3,7 @@
     "compilerOptions": {
         "lib": [
             "ES2021",
+            "DOM",
             "WebWorker"
         ],
         "module": "ES2022",
