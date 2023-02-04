@@ -6,7 +6,7 @@ export class WorkerRenderer implements Renderer {
     private readonly worker: Worker;
 
     constructor(parameters: FaviconMarqueeParameters, favicon: HTMLLinkElement) {
-        this.worker = new Worker(new URL("./worker.js", import.meta.url));
+        this.worker = new Worker(new URL("./worker.js", import.meta.url), { type: "classic" });
         this.parameters = parameters;
         this.favicon = favicon;
         this.worker.onmessage = (e: MessageEvent<Message>) => {
