@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "compile": "tsc",
-        "format": "prettier --check src/**/*",
+        "format": "prettier --check src/**/* --cache",
         "format:fix": "prettier --write src/**/*",
         "prepublishOnly": "npm run compile"
     },
@@ -19,7 +19,7 @@
         "@types/web": "^0.0.88"
     },
     "devDependencies": {
-        "prettier": "^2.5.1",
+        "prettier": "^2.8.3",
         "typescript": "^4.9.4"
     },
     "repository": "https://github.com/StenAL/favicon-marquee",
