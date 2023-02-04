@@ -81,6 +81,13 @@ marquee.start();
 
 `marquee.stop()` can be used to stop the marquee at any time, after which it can be restarted again with `marquee.start()`.
 
+FaviconMarquee uses [progressive enhancement](https://en.wikipedia.org/wiki/Progressive_enhancement) to run more 
+efficiently in newer browsers. By default, the favicon is rendered on an HTML canvas. If the
+browser supports [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas), the favicon is
+rendered on it instead, decoupling rendering from the DOM and increasing performance. Further, the OffscreenCanvas is rendered
+using a [web worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) which runs in a background thread
+separate from the main thread, meaning that calculations do not block the browser's UI rendering. 
+
 ## Contributing and Issues
 
 Contributions are always welcome. Anyone can open issues and
