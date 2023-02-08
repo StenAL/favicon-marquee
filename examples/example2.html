@@ -7,6 +7,8 @@
     <body>
         <h1>Scrolling favicon example 2</h1>
         <p>Check it out in the tab above</p>
+        <button id="start-marquee">Start</button>
+        <button id="stop-marquee">Stop</button>
         <p>Other examples: <a href="./example1.html">1</a></p>
         <script type="module">
             import FaviconMarquee from "../lib/main.js";
@@ -18,6 +20,16 @@
                 marginBottom: 5,
             });
             marquee.start();
+
+            const startButton = document.querySelector("#start-marquee");
+            startButton.addEventListener("click", () => {
+                marquee.start();
+            })
+
+            const stopButton = document.querySelector("#stop-marquee");
+            stopButton.addEventListener("click", () => {
+                marquee.stop();
+            })
         </script>
     </body>
 </html>
