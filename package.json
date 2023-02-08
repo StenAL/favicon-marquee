@@ -5,6 +5,7 @@
     "author": "Sten Laane <sten@laane.xyz> (https://laane.xyz)",
     "main": "lib/main.js",
     "types": "lib/main.d.ts",
+    "type": "module",
     "files": [
         "lib"
     ],
