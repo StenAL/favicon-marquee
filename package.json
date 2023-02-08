@@ -7,7 +7,8 @@
     "types": "lib/main.d.ts",
     "type": "module",
     "files": [
-        "lib"
+        "lib",
+        "!lib/**/__tests__/**/*"
     ],
     "scripts": {
         "compile": "tsc",
