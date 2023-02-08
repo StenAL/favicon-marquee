@@ -1,0 +1,29 @@
+name: "favicon-marquee-e2e"
+services:
+    firefox:
+        image: selenium/standalone-firefox:114.0
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:4444"]
+            interval: 3s
+        volumes:
+            - ../../examples:/files/examples
+            - ../../lib:/files/lib
+        environment:
+            - SE_SCREEN_WIDTH=1920
+            - SE_SCREEN_HEIGHT=150
+        ports:
+            - "4444:4444"
+
+    node:
+        image: node:18
+        depends_on:
+            firefox:
+                condition: service_healthy
+        volumes:
+            - ../../node_modules:/files/node_modules
+            - ../../package.json:/files/package.json
+            - ../../lib/__tests__/e2e.js:/files/__tests__/e2e.js
+        environment:
+            - SELENIUM_REMOTE_URL=http://firefox:4444
+        command:
+            - /files/__tests__/e2e.js
