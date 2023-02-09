@@ -14,11 +14,29 @@ services:
         ports:
             - "4444:4444"
 
+    firefox_recording:
+        image: selenium/video:ffmpeg-4.3.1-20230607
+        volumes:
+            - ../../:/videos
+        depends_on:
+            node:
+                condition: service_healthy
+        environment:
+            - SE_SCREEN_WIDTH=306
+            - SE_SCREEN_HEIGHT=46
+            - FRAME_RATE=60
+            - DISPLAY_CONTAINER_NAME=firefox
+            - FILE_NAME=favicon_marquee_demo.mp4
+
     node:
         image: node:18
         depends_on:
             firefox:
                 condition: service_healthy
+        healthcheck:
+            test: ["CMD", "test", "-f", "/tmp/favicon-marquee-node-container-ready"]
+            interval: 3s
+            retries: 5
         volumes:
             - ../../node_modules:/files/node_modules
             - ../../package.json:/files/package.json
