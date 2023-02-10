@@ -34,6 +34,9 @@ jobs:
       - name: checkout current repository
         uses: actions/checkout@v3
 
+      - name: set up ffmpeg
+        uses: FedericoCarboni/setup-ffmpeg@v2
+
       - name: set up Node.js 18.x
         uses: actions/setup-node@v3
         with:
@@ -44,3 +47,11 @@ jobs:
 
       - name: generate recording
         run: npm run test
+
+      - name: create recording gif
+        run: |
+          ffmpeg \
+              -i favicon_marquee_demo.mp4 \
+              -filter:v "fps=25,blackframe=0,metadata=select:key=lavfi.blackframe.pblack:value=99:function=less" \
+              -y \
+              scrolling-favicon.gif
