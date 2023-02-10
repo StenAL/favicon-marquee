@@ -28,3 +28,19 @@ jobs:
 
       - name: compile TypeScript
         run: npm run compile
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout current repository
+        uses: actions/checkout@v3
+
+      - name: set up Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: npm install
+        run: npm ci
+
+      - name: generate recording
+        run: npm run test
