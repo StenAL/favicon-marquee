@@ -55,3 +55,9 @@ jobs:
               -filter:v "fps=25,blackframe=0,metadata=select:key=lavfi.blackframe.pblack:value=99:function=less" \
               -y \
               scrolling-favicon.gif
+
+      - name: create recording artifact
+        # TODO comment link of artifact on PRs, can use https://github.com/unsplash/comment-on-pr, blocked on https://github.com/actions/upload-artifact/issues/406
+        uses: actions/upload-artifact@v3
+        with:
+          path: scrolling-favicon.gif
