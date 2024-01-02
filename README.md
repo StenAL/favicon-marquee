@@ -53,6 +53,7 @@ to its constructor, although sensible defaults are provided:
 -   `text` - text to be displayed in the favicon. This can be any unicode characters
     including emojis, cyrillic, hangul, etc.
 -   `font` - font of the text. This can be any valid CSS `font-family` value
+-   `size` - size of the text. This is in pixels
 -   `color` - color of the text to be displayed. Can be any valid CSS `color` value
 -   `background` - color of the marquee's background. Transparent by default. Can be
     any valid CSS `color` value
