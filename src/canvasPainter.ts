@@ -8,6 +8,7 @@ export class CanvasPainter {
     private readonly stepSize: number;
     private readonly font: string;
     private readonly marginBottom: number;
+    private readonly size: number;
     private readonly background?: string;
     private readonly textWidth: number;
 
@@ -21,6 +22,7 @@ export class CanvasPainter {
             color = "green",
             step = 0.75,
             marginBottom = 0,
+            size = 200,
             background,
         }: FaviconMarqueeParameters,
         renderingContext: OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D
@@ -30,11 +32,12 @@ export class CanvasPainter {
         this.stepSize = step;
         this.font = font;
         this.marginBottom = marginBottom;
+        this.size = size
         this.background = background;
 
         this.pixelsScrolled = 0;
         this.renderingContext = renderingContext;
-        this.renderingContext.font = CANVAS_SIZE + "px " + this.font;
+        this.renderingContext.font = this.size + "px " + this.font;
         this.textWidth = Math.ceil(this.renderingContext.measureText(this.text).width);
     }
 

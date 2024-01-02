@@ -35,6 +35,11 @@ export interface FaviconMarqueeParameters {
      * Default: undefined (transparent, color of browser's tab background)
      */
     background?: string;
+    /**
+     * The size of the text rendered in the favicon. This can be used to make the
+     * text bigger or smaller.
+     */
+    size?: number;
 }
 
 export enum Mode {
