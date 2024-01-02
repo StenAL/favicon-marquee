@@ -71,10 +71,10 @@ marquee is re-rendered.
 const marquee = new FaviconMarquee({
     text: 'Different text',
     color: '#323330',
-    size: 48,
+    size: 200,
     step: 0.5,
     background: "#F0DB4F",
-    marginBottom: 3,
+    marginBottom: 32,
 });
 marquee.start();
 ```
