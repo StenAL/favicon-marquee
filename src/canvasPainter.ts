@@ -19,7 +19,7 @@ export class CanvasPainter {
             text = "SCROLLING TEXT",
             font = '"Arial", sans-serif',
             color = "green",
-            step = 0.75,
+            step = 1,
             marginBottom = 0,
             background,
         }: FaviconMarqueeParameters,
