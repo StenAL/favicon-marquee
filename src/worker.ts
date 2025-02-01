@@ -13,7 +13,7 @@ class OffscreenCanvasRenderer implements Renderer {
         const renderingContext = this.canvas.getContext("2d");
         if (renderingContext === null) {
             throw new Error(
-                "Error getting 2D rendering context from canvas. This browser does not support FaviconMarquee"
+                "Error getting 2D rendering context from canvas. This browser does not support FaviconMarquee",
             );
         }
         this.canvasDrawer = new CanvasPainter(parameters, renderingContext);

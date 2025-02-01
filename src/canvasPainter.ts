@@ -23,7 +23,7 @@ export class CanvasPainter {
             marginBottom = 0,
             background,
         }: FaviconMarqueeParameters,
-        renderingContext: OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D
+        renderingContext: OffscreenCanvasRenderingContext2D | CanvasRenderingContext2D,
     ) {
         this.text = text;
         this.color = color;
