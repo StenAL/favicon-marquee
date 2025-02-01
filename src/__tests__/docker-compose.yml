@@ -15,7 +15,8 @@ services:
             - "4444:4444"
 
     browser_recording:
-        image: selenium/video:ffmpeg-4.3.1-20230607
+        image: selenium/video:ffmpeg-7.1-20250202
+        user: root
         volumes:
             - ../../:/videos
         depends_on:
