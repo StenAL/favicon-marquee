@@ -21,7 +21,7 @@ export interface FaviconMarqueeParameters {
     /**
      * Specifies how many pixels the marquee scrolls each render. This can be used
      * to speed up or slow down the text's scrolling.
-     * Default: 0.75
+     * Default: 1
      */
     step?: number;
     /**
