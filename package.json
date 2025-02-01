@@ -12,8 +12,8 @@
     ],
     "scripts": {
         "compile": "tsc",
-        "format": "prettier --check src/**/* --cache",
-        "format:fix": "prettier --write src/**/*",
+        "format": "prettier --check 'src/**/*' --cache",
+        "format:fix": "prettier --write 'src/**/*'",
         "prepublishOnly": "npm run compile",
         "test": "tsc && docker compose -f src/__tests__/docker-compose.yml up --abort-on-container-exit"
     },
