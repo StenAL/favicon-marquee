@@ -1,4 +1,5 @@
 import { Browser, Builder, By, WebDriver } from "selenium-webdriver";
+import { Options } from "selenium-webdriver/chrome.js";
 import { setTimeout } from "timers/promises";
 import { resolve } from "path";
 import { unlink, writeFile } from "node:fs/promises";
@@ -15,7 +16,9 @@ const runningInContainer = Boolean(process.env.SELENIUM_REMOTE_URL);
 const createWebDriver = async (): Promise<WebDriver> => {
     for (let attempt = 1; attempt <= DRIVER_CONNECTION_RETRIES + 1; attempt++) {
         try {
-            const driver = await new Builder().forBrowser(Browser.FIREFOX).build();
+            const options = new Options();
+            options.addArguments("--disable-web-security"); // disable CORS
+            const driver = await new Builder().forBrowser(Browser.CHROME).setChromeOptions(options).build();
             console.log(`Successfully connected to driver on attempt ${attempt}!`);
             return driver;
         } catch (e) {
