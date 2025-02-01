@@ -1,6 +1,6 @@
 name: "favicon-marquee-e2e"
 services:
-    firefox:
+    browser:
         image: selenium/standalone-firefox:114.0
         healthcheck:
             test: ["CMD", "curl", "-f", "http://localhost:4444"]
@@ -14,7 +14,7 @@ services:
         ports:
             - "4444:4444"
 
-    firefox_recording:
+    browser_recording:
         image: selenium/video:ffmpeg-4.3.1-20230607
         volumes:
             - ../../:/videos
@@ -25,13 +25,13 @@ services:
             - SE_SCREEN_WIDTH=306
             - SE_SCREEN_HEIGHT=46
             - FRAME_RATE=60
-            - DISPLAY_CONTAINER_NAME=firefox
+            - DISPLAY_CONTAINER_NAME=browser
             - FILE_NAME=favicon_marquee_demo.mp4
 
     node:
         image: node:18
         depends_on:
-            firefox:
+            browser:
                 condition: service_healthy
         healthcheck:
             test: ["CMD", "test", "-f", "/tmp/favicon-marquee-node-container-ready"]
@@ -42,6 +42,6 @@ services:
             - ../../package.json:/files/package.json
             - ../../lib/__tests__/e2e.js:/files/__tests__/e2e.js
         environment:
-            - SELENIUM_REMOTE_URL=http://firefox:4444
+            - SELENIUM_REMOTE_URL=http://browser:4444
         command:
             - /files/__tests__/e2e.js
