@@ -47,32 +47,25 @@ const signalReady = async () => {
     await writeFile(HEALTHCHECK_FILE, "");
 };
 
-const run = async () => {
-    console.log("Initializing...");
-    const driver = await createWebDriver();
-    const filePath = runningInContainer ? CONTAINER_FILE_PATH : LOCAL_FILE_PATH;
-    await driver.get(`file://${filePath}`);
-    console.log("Website loaded!");
-    await driver.findElement(By.id("stop-marquee")).click();
+console.log("Initializing...");
+const driver = await createWebDriver();
+const filePath = runningInContainer ? CONTAINER_FILE_PATH : LOCAL_FILE_PATH;
+await driver.get(`file://${filePath}`);
+console.log("Website loaded!");
+await driver.findElement(By.id("stop-marquee")).click();
+if (runningInContainer) {
+    await signalReady();
+    console.log("Waiting for recording container to start");
+    await waitForRecording();
+}
+await driver.findElement(By.id("start-marquee")).click();
+try {
+    console.log("Waiting 5 seconds");
+    await setTimeout(5000);
+} finally {
+    console.log("Teardown...");
+    await driver.quit();
     if (runningInContainer) {
-        await signalReady();
-        console.log("Waiting for recording container to start");
-        await waitForRecording();
+        await unlink(HEALTHCHECK_FILE);
     }
-    await driver.findElement(By.id("start-marquee")).click();
-    try {
-        console.log("Waiting 5 seconds");
-        await setTimeout(5000);
-    } finally {
-        console.log("Teardown...");
-        await driver.quit();
-        if (runningInContainer) {
-            await unlink(HEALTHCHECK_FILE);
-        }
-    }
-};
-
-run().catch((e) => {
-    console.error(e);
-    process.exit(1);
-});
+}
