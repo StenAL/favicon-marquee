@@ -30,7 +30,7 @@ const createWebDriver = async (): Promise<WebDriver> => {
 const waitForRecording = async () => {
     for (let attempt = 1; attempt <= RECORDING_WAIT_RETRIES + 1; attempt++) {
         try {
-            await fetch("http://firefox_recording:9000");
+            await fetch("http://browser_recording:9000");
             console.log(`video is recording on attempt ${attempt}!`);
             return;
         } catch (e) {
