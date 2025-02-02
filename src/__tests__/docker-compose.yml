@@ -30,7 +30,7 @@ services:
             - FILE_NAME=favicon_marquee_demo.mp4
 
     node:
-        image: node:18
+        image: node:22
         depends_on:
             browser:
                 condition: service_healthy
