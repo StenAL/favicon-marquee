@@ -53,7 +53,25 @@ jobs:
         run: ./generate-gif.sh
 
       - name: create recording artifact
-        # TODO comment link of artifact on PRs, can use https://github.com/unsplash/comment-on-pr, blocked on https://github.com/actions/upload-artifact/issues/406
+        id: artifact-upload
         uses: actions/upload-artifact@v4
         with:
           path: scrolling-favicon.gif
+
+      - name: PR Comment
+        if: github.event_name == 'pull_request'
+        shell: bash {0} # bypass GH Actions setting "-e" by default https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#custom-shell
+        run: |
+          export RETENTION_DATE=$(date -d "+90 days" +"%e %b %Y")
+          export ARTIFACT_URL=${{ steps.artifact-upload.outputs.artifact-url }}
+          cat .github/workflows/pr-comment.md | envsubst > /tmp/comment.md
+          
+          gh pr comment $PRNUM --edit-last --body-file /tmp/comment.md
+          if [ $? != 0 ]; then
+            gh pr comment $PRNUM --body-file /tmp/comment.md
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PRNUM: ${{ github.event.pull_request.number }}
+          ARTIFACT_URL: ${{ steps.artifact-upload.outputs.artifact-url }}
