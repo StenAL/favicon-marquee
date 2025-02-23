@@ -1,6 +1,6 @@
 {
     "name": "favicon-marquee",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "description": "An animated scrolling favicon for your website",
     "author": "Sten Laane <sten@laane.xyz> (https://laane.xyz)",
     "main": "lib/main.js",
