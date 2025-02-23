@@ -14,6 +14,12 @@ export interface FaviconMarqueeParameters {
      */
     font?: string;
     /**
+     * Size of the text to display. The canvas the text is painted to is 256x256,
+     * this value should be set with that size in mind.
+     * Default: 256
+     */
+    fontSize?: number;
+    /**
      * Color of the text to be displayed. Can be any valid CSS `color` value.
      * Default: "green"
      */

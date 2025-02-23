@@ -18,6 +18,7 @@ export class CanvasPainter {
         {
             text = "SCROLLING TEXT",
             font = '"Arial", sans-serif',
+            fontSize = 256,
             color = "green",
             step = 1,
             marginBottom = 0,
@@ -34,7 +35,7 @@ export class CanvasPainter {
 
         this.pixelsScrolled = 0;
         this.renderingContext = renderingContext;
-        this.renderingContext.font = CANVAS_SIZE + "px " + this.font;
+        this.renderingContext.font = fontSize + "px " + this.font;
         this.textWidth = Math.ceil(this.renderingContext.measureText(this.text).width);
     }
 
