@@ -1,3 +1,8 @@
+## 2.2.0
+- The default step size is now 1 instead of 0.75
+  - Subjectively, this makes scrolling feel less sluggish.
+- Added a new `fontSize` parameter to control the size of the text
+
 ## 2.1.0
 - Use ESM worker for OffscreenCanvas worker renderer
     - This enabled removing some duplicate code which decreases (uncompressed) bundle size from 29 kB to 18.6 kB
